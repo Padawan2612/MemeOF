@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda</title>
+</head>
+<body>
+    <h1>Resultados de búsqueda</h1>
+
+    <form action="/search" method="get">
+        <label for="query">Buscar:</label>
+        <input type="text" id="query" name="query" placeholder="Etiqueta o descripción">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <hr>
+
+    {% if memes %}
+        <ul>
+            {% for meme in memes %}
+                <li>
+                    <img src="{{ meme.ruta }}" alt="Meme" style="max-width: 300px; height: auto;">
+                    <p><strong>{{ meme.descripcion }}</strong></p>
+                    <p><strong>Usuario:</strong> {{ meme.usuario }}</p>
+                    <p><strong>Cargado:</strong> {{ meme.cargada }}</p>
+                    <p><strong>URL Pública:</strong> <a href="{{ meme.ruta }}" target="_blank">{{ meme.ruta }}</a></p>
+                    <p><strong>Etiquetas:</strong></p>
+                    <ul>
+                        {% for etiqueta in meme_etiquetas[meme.id] %}
+                            <li>{{ etiqueta }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+</body>
+</html>

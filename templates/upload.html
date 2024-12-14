@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar Meme</title>
+</head>
+<body>
+    <h1>Cargar Meme</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" name="descripcion" required><br><br>
+        
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required><br><br>
+        
+        <label for="imagen">Selecciona una imagen:</label>
+        <input type="file" id="imagen" name="imagen" required><br><br>
+        
+        <label for="etiquetas">Etiquetas (separadas por comas):</label>
+        <input type="text" id="etiquetas" name="etiquetas"><br><br>
+        
+        <button type="submit">Cargar Meme</button>
+    </form>
+
+    {% if etiquetas %}
+        <h2>Etiquetas para el meme:</h2>
+        <ul>
+            {% for etiqueta in etiquetas %}
+                <li>{{ etiqueta }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
